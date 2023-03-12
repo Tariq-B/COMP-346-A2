@@ -16,7 +16,7 @@ import java.util.InputMismatchException;
  * @author Kerly Titus
  */
 
-public class Server extends Thread {
+public class Server2 extends Thread {
 	
 	/* NEW : Shared member variables are now static for the 2 receiving threads */
 	private static int numberOfTransactions;         	/* Number of transactions handled by the server */
@@ -34,7 +34,7 @@ public class Server extends Thread {
      * @return 
      * @param stid
      */
-    Server(String stid)
+    Server2(String stid)
     {
     	if ( !(Network2.getServerConnectionStatus().equals("connected")))
     	{
@@ -416,19 +416,20 @@ public class Server extends Thread {
       
     public void run()
     {   Transactions trans = new Transactions();
-    	 long serverStartTime, serverEndTime;
-    
-	/* System.out.println("\n DEBUG : Server.run() - starting server thread " + getServerThreadId() + " " + Network.getServerConnectionStatus()); */
-    	
-	Transactions trans = new Transactions();
-    	long serverStartTime, serverEndTime;
-    
-	/* System.out.println("\n DEBUG : Server.run() - starting server thread " + objNetwork.getServerConnectionStatus()); */
-    	
-    	/* .....................................................................................................................................................................................................*/
-        
+        long serverStartTime, serverEndTime;
+
+        serverStartTime = System.currentTimeMillis();
+
+        //System.out.println("\n DEBUG : Server.run() - starting server thread " + objNetwork.getServerConnectionStatus());
+
+        //process the transactions
+        processTransactions(trans);
+        serverEndTime = System.currentTimeMillis();
+
+        // Disconnect server
         System.out.println("\n Terminating server thread - " + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
-	
+        //objNetwork.disconnect(objNetwork.getServerIP());
+
     }
 }
 
