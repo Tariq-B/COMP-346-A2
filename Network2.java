@@ -1,17 +1,8 @@
-
-import java.util.concurrent.*;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /** Network class
  *
  * @author Kerly Titus
  */
-public class Network extends Thread {
+public class Network2 extends Thread {
     
     private static int maxNbPackets;                           /* Maximum number of simultaneous transactions handled by the network buffer */
     private static int inputIndexClient, inputIndexServer, outputIndexServer, outputIndexClient; /* Network buffer indices for accessing the input buffer (inputIndexClient, outputIndexServer) and output buffer (inputIndexServer, outputIndexClient) */
@@ -31,7 +22,7 @@ public class Network extends Thread {
      * @return 
      * @param
      */
-     Network( )
+     Network2( )
       { 
     	 int i;  
         

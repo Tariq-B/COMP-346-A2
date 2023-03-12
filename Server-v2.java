@@ -22,7 +22,7 @@ public class Server extends Thread {
 	private static int numberOfTransactions;         	/* Number of transactions handled by the server */
 	private static int numberOfAccounts;             	/* Number of accounts stored in the server */
 	private static int maxNbAccounts;                		/* maximum number of transactions */
-	private static Accounts [] account;              		/* Accounts to be accessed or updated */
+	private static Accounts2[] account;              		/* Accounts to be accessed or updated */
 	/* NEW : member variabes to be used in PA2 with appropriate accessor and mutator methods */
 	private String serverThreadId;				 /* Identification of the two server threads - Thread1, Thread2 */
 	private static String serverThreadRunningStatus1;	 /* Running status of thread 1 - idle, running, terminated */
@@ -36,7 +36,7 @@ public class Server extends Thread {
      */
     Server(String stid)
     {
-    	if ( !(Network.getServerConnectionStatus().equals("connected")))
+    	if ( !(Network2.getServerConnectionStatus().equals("connected")))
     	{
     		System.out.println("\n Initializing the server ...");
     		numberOfTransactions = 0;
@@ -44,11 +44,11 @@ public class Server extends Thread {
     		maxNbAccounts = 100;
     		serverThreadId = stid;							/* unshared variable so each thread has its own copy */
     		serverThreadRunningStatus1 = "idle";				
-    		account = new Accounts[maxNbAccounts];
+    		account = new Accounts2[maxNbAccounts];
     		System.out.println("\n Inializing the Accounts database ...");
     		initializeAccounts( );
     		System.out.println("\n Connecting server to network ...");
-    		if (!(Network.connect(Network.getServerIP())))
+    		if (!(Network2.connect(Network2.getServerIP())))
     		{
     			System.out.println("\n Terminating server application, network unavailable");
     			System.exit(0);
@@ -217,7 +217,7 @@ public class Server extends Thread {
         while (inputStream.hasNextLine())
         {
             try
-            {   account[i] = new Accounts();
+            {   account[i] = new Accounts2();
                 account[i].setAccountNumber(inputStream.next());    /* Read account number */
                 account[i].setAccountType(inputStream.next());      /* Read account type */
                 account[i].setFirstName(inputStream.next());        /* Read first name */
@@ -270,18 +270,18 @@ public class Server extends Thread {
          /* System.out.println("\n DEBUG : Server.processTransactions() " + getServerThreadId() ); */
          
          /* Process the accounts until the client disconnects */
-         while ((!Network.getClientConnectionStatus().equals("disconnected")))
+         while ((!Network2.getClientConnectionStatus().equals("disconnected")))
          {
         	// while ( (Network.getInBufferStatus().equals("empty") && !Network.getClientConnectionStatus().equals("disconnected")) ) 
         	// { 
         	//	 Thread.yield(); 	/* Yield the cpu if the network input buffer is empty */
         	// }
         	 
-        	 if (!Network.getInBufferStatus().equals("empty"))
+        	 if (!Network2.getInBufferStatus().equals("empty"))
         	 { 
         		 /* System.out.println("\n DEBUG : Server.processTransactions() - transferring in account " + trans.getAccountNumber()); */
         		 
-        		 Network.transferIn(trans);                              /* Transfer a transaction from the network input buffer */
+        		 Network2.transferIn(trans);                              /* Transfer a transaction from the network input buffer */
              
         		 accIndex = findAccount(trans.getAccountNumber());
         		 /* Process deposit operation */
@@ -322,7 +322,7 @@ public class Server extends Thread {
         		
         		 /* System.out.println("\n DEBUG : Server.processTransactions() - transferring out account " + trans.getAccountNumber()); */
         		 
-        		 Network.transferOut(trans);                            		/* Transfer a completed transaction from the server to the network output buffer */
+        		 Network2.transferOut(trans);                            		/* Transfer a completed transaction from the server to the network output buffer */
         		 setNumberOfTransactions( (getNumberOfTransactions() +  1) ); 	/* Count the number of transactions processed */
         	 }
          }
@@ -404,7 +404,7 @@ public class Server extends Thread {
      */
      public String toString() 
      {	
-    	 return ("\n server IP " + Network.getServerIP() + "connection status " + Network.getServerConnectionStatus() + "Number of accounts " + getNumberOfAccounts());
+    	 return ("\n server IP " + Network2.getServerIP() + "connection status " + Network2.getServerConnectionStatus() + "Number of accounts " + getNumberOfAccounts());
      }
      
     /**

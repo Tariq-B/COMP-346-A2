@@ -4,18 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /** Client class
  *
  * @author Kerly Titus
  */
 
-public class Client extends Thread { 
+public class Client2 extends Thread {
     
     private static int numberOfTransactions;   		/* Number of transactions to process */
     private static int maxNbTransactions;      		/* Maximum number of transactions */
@@ -27,7 +21,7 @@ public class Client extends Thread {
      * @return 
      * @param
      */
-     Client(String operation)
+     Client2(String operation)
      { 
        if (operation.equals("sending"))
        { 
@@ -39,8 +33,8 @@ public class Client extends Thread {
            System.out.println("\n Initializing the transactions ... ");
            readTransactions();
            System.out.println("\n Connecting client to network ...");
-           String cip = Network.getClientIP();
-           if (!(Network.connect(cip)))
+           String cip = Network2.getClientIP();
+           if (!(Network2.connect(cip)))
            {   System.out.println("\n Terminating client application, network unavailable");
                System.exit(0);
            }
@@ -165,7 +159,7 @@ public class Client extends Thread {
            
             /* System.out.println("\n DEBUG : Client.sendTransactions() - sending transaction on account " + transaction[i].getAccountNumber()); */ 
             
-            Network.send(transaction[i]);                            /* Transmit current transaction */
+            Network2.send(transaction[i]);                            /* Transmit current transaction */
             i++;          
          }
          
@@ -189,7 +183,7 @@ public class Client extends Thread {
         		 
         	// }
                                                                             	
-            Network.receive(transact);                               	/* Receive updated transaction from the network buffer */
+            Network2.receive(transact);                               	/* Receive updated transaction from the network buffer */
             
             /* System.out.println("\n DEBUG : Client.receiveTransactions() - receiving updated transaction on account " + transact.getAccountNumber()); */
             
@@ -206,7 +200,7 @@ public class Client extends Thread {
      */
      public String toString() 
      {
-    	 return ("\n client IP " + Network.getClientIP() + " Connection status" + Network.getClientConnectionStatus() + "Number of transactions " + getNumberOfTransactions());
+    	 return ("\n client IP " + Network2.getClientIP() + " Connection status" + Network2.getClientConnectionStatus() + "Number of transactions " + getNumberOfTransactions());
      }
     
        
@@ -226,4 +220,5 @@ public class Client extends Thread {
             }
                 
     }
-}
+
+

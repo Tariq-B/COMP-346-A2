@@ -1,15 +1,8 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /** Accounts class
  *
- * @author Kerly Titus
+ * @author Tariq Benmouh
  */
-public class Accounts {
+public class Accounts2 {
     
     private String accountNumber;       /* Unique account number */
     private String accountType;         /* chequing, saving, credit */
@@ -23,7 +16,7 @@ public class Accounts {
     * @return
     * @param
     */
-    Accounts()
+    Accounts2()
     {
         accountNumber = " ";
         accountType = " ";
