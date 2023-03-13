@@ -23,7 +23,7 @@ public class Driver {
 
         //change below
 
-        Network objNetwork = new Network();             /* Activate the network */
+        Network objNetwork = new Network( );             /* Activate the network */
         objNetwork.start();
         //Server objServer = new Server();                                /* Activate the server */
         //objServer.start();
