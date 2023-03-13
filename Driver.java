@@ -30,7 +30,7 @@ public class Driver {
         objServer1.start();
         Server objServer2 = new Server("2");                       /* Activate the 2nd server thread */
         objServer2.start();
-        
+
         Client client1 = new Client("sending");                /* Activate the sending client */
         client1.start();
         Client client2 = new Client("receiving");              /* Activate the receiving client */
