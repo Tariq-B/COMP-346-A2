@@ -1,6 +1,5 @@
 /**
- *
- * @author Kerly Titus
+ * @author Tariq Benmouh
  */
 public class Driver2 {
 
