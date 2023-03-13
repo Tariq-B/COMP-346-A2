@@ -22,14 +22,25 @@ public class Driver {
          */
 
         //change below
-        
-    	Network objNetwork = new Network( );            /* Activate the network */
-        objNetwork.start();
 
-        Client objClient12 = new Client("sending");          /* Start the sending client thread */
-        objClient12.start();
-        Client objClient22 = new Client("receiving");        /* Start the receiving client thread */
-        objClient22.start();
+        Network objNetwork = new Network();             /* Activate the network */
+        objNetwork.start();
+        //Server objServer = new Server();                                /* Activate the server */
+        //objServer.start();
+        Client client1 = new Client("sending");                /* Activate the sending client */
+        client1.start();
+        Client client2 = new Client("receiving");              /* Activate the receiving client */
+        client2.start();
+
+        // to not be zombie threads (might not be needed)
+        /*try {
+        objServer.join();
+        client1.join();
+        client2.join();
+        objNetwork.join();}
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }*/
 
     }
     
