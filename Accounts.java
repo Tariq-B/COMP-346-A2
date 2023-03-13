@@ -2,7 +2,7 @@
  *
  * @author Tariq Benmouh
  */
-public class Accounts2 {
+public class Accounts {
     
     private String accountNumber;       /* Unique account number */
     private String accountType;         /* chequing, saving, credit */
@@ -16,7 +16,7 @@ public class Accounts2 {
     * @return
     * @param
     */
-    Accounts2()
+    Accounts()
     {
         accountNumber = " ";
         accountType = " ";

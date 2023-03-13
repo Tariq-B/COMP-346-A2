@@ -1,8 +1,8 @@
 /** Network class
  *
- * @author Kerly Titus
+ * @author Tariq Benmouh
  */
-public class Network2 extends Thread {
+public class Network extends Thread {
     
     private static int maxNbPackets;                           /* Maximum number of simultaneous transactions handled by the network buffer */
     private static int inputIndexClient, inputIndexServer, outputIndexServer, outputIndexClient; /* Network buffer indices for accessing the input buffer (inputIndexClient, outputIndexServer) and output buffer (inputIndexServer, outputIndexClient) */
@@ -22,7 +22,7 @@ public class Network2 extends Thread {
      * @return 
      * @param
      */
-     Network2( )
+     Network( )
       { 
     	 int i;  
         

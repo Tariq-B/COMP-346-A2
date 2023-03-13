@@ -6,10 +6,10 @@ import java.util.InputMismatchException;
 
 /** Client class
  *
- * @author Kerly Titus
+ * @author Tariq Benmouh
  */
 
-public class Client2 extends Thread {
+public class Client extends Thread {
 
     private static int numberOfTransactions;        /* Number of transactions to process */
     private static int maxNbTransactions;            /* Maximum number of transactions */
@@ -22,7 +22,7 @@ public class Client2 extends Thread {
      * @param
      * @return
      */
-    Client2(String operation) {
+    Client(String operation) {
         if (operation.equals("sending")) {
             System.out.println("\n Initializing client sending application ...");
             numberOfTransactions = 0;
@@ -32,8 +32,8 @@ public class Client2 extends Thread {
             System.out.println("\n Initializing the transactions ... ");
             readTransactions();
             System.out.println("\n Connecting client to network ...");
-            String cip = Network2.getClientIP();
-            if (!(Network2.connect(cip))) {
+            String cip = Network.getClientIP();
+            if (!(Network.connect(cip))) {
                 System.out.println("\n Terminating client application, network unavailable");
                 System.exit(0);
             }
@@ -142,7 +142,7 @@ public class Client2 extends Thread {
 
             /* System.out.println("\n DEBUG : Client.sendTransactions() - sending transaction on account " + transaction[i].getAccountNumber()); */
 
-            Network2.send(transaction[i]);                            /* Transmit current transaction */
+            Network.send(transaction[i]);                            /* Transmit current transaction */
             i++;
         }
 
@@ -164,7 +164,7 @@ public class Client2 extends Thread {
 
             // }
 
-            Network2.receive(transact);                                /* Receive updated transaction from the network buffer */
+            Network.receive(transact);                                /* Receive updated transaction from the network buffer */
 
             /* System.out.println("\n DEBUG : Client.receiveTransactions() - receiving updated transaction on account " + transact.getAccountNumber()); */
 
@@ -180,7 +180,7 @@ public class Client2 extends Thread {
      * @return String representation
      */
     public String toString() {
-        return ("\n client IP " + Network2.getClientIP() + " Connection status" + Network2.getClientConnectionStatus() + "Number of transactions " + getNumberOfTransactions());
+        return ("\n client IP " + Network.getClientIP() + " Connection status" + Network.getClientConnectionStatus() + "Number of transactions " + getNumberOfTransactions());
     }
 
 
@@ -212,7 +212,7 @@ public class Client2 extends Thread {
             receiveClientEndTime = System.currentTimeMillis();
 
             System.out.println("\n Terminating client receiving thread - Running time " + (receiveClientEndTime - receiveClientStartTime) + " milliseconds");
-            //objNetwork.disconnect(objNetwork.getClientIP());    //disconnect client
+            Network.disconnect(Network.getClientIP());    //disconnect client
         }
 
     }
