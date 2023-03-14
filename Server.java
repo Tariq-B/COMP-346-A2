@@ -411,19 +411,37 @@ public class Server extends Thread {
     {   Transactions trans = new Transactions();
         long server1StartTime, server1EndTime, server2StartTime, server2EndTime;
 
-        //separate into 2 later
-        //might just be this one, will see
-        
-        /* System.out.println("\n DEBUG : Server.run() - starting server thread " + getServerThreadId() + " " + Network.getServerConnectionStatus()); */
+        //separate into 2
+        if (this.getServerThreadId().equals("Thread 1")) {
+            /* System.out.println("\n DEBUG : Server.run() - starting server thread " + getServerThreadId() + " " + Network.getServerConnectionStatus()); */
 
-        server1StartTime = System.currentTimeMillis();
+            server1StartTime = System.currentTimeMillis();
 
-        //process the transactions
-        processTransactions(trans);
-        server1EndTime = System.currentTimeMillis();
+            //process the transactions
+            processTransactions(trans);
+            server1EndTime = System.currentTimeMillis();
 
-        // Disconnect server
-        System.out.println("\n Terminating server thread - " + " Running time " + (server1EndTime - server1StartTime) + " milliseconds");
+            // Print message and set server status
+            System.out.println("\n Terminating server thread - " + getServerThreadId() +  " Running time " + (server1EndTime - server1StartTime) + " milliseconds");
+            //serverstatus here
+        }
+
+        if (this.getServerThreadId().equals("Thread 2")) {
+            /* System.out.println("\n DEBUG : Server.run() - starting server thread " + getServerThreadId() + " " + Network.getServerConnectionStatus()); */
+
+            server2StartTime = System.currentTimeMillis();
+
+            //process the transactions
+            processTransactions(trans);
+            server2EndTime = System.currentTimeMillis();
+
+            // Print message and set server status
+            System.out.println("\n Terminating server thread - " + getServerThreadId() + " Running time " + (server2EndTime - server2StartTime) + " milliseconds");
+            //serverstatus here
+        }
+
+        // if both server status terminated then u disconnect (implement later)
+
         Network.disconnect(Network.getServerIP());
 
     }
