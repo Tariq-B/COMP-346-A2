@@ -14,7 +14,7 @@ public class Driver {
         //print for later
 
                 try {
-        PrintStream testoutput = new PrintStream("Phase1TestOutput3.txt");
+        PrintStream testoutput = new PrintStream("Phase1TestOutput.txt");
         System.setOut(testoutput);
 
         } catch (FileNotFoundException e) {
