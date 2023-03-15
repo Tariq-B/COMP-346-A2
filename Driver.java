@@ -14,7 +14,7 @@ public class Driver {
         //print for later
 
                 try {
-        PrintStream testoutput = new PrintStream("Phase1TestOutput.txt");
+        PrintStream testoutput = new PrintStream("UnSyncOutput(NODEBUG).txt");
         System.setOut(testoutput);
 
         } catch (FileNotFoundException e) {

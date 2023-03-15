@@ -1,7 +1,5 @@
 import java.util.concurrent.*;
 
-// look at send receive transferin/out, that's prob where
-
 /** Network class
  *
  * @author Tariq Benmouh
@@ -19,7 +17,14 @@ public class Network extends Thread {
     private static Transactions outGoingPacket[];              /* Outgoing network buffer */
     private static String inBufferStatus, outBufferStatus;     /* Current status of the network buffers - normal, full, empty */
     private static String networkStatus;                       /* Network status - active, inactive */
-       
+
+    Semaphore sem1;
+    Semaphore sem2;
+    Semaphore sem3;
+    Semaphore sem4;
+
+    // look at send receive transferin/out, that's prob where
+
     /** 
      * Constructor of the Network class
      * 
