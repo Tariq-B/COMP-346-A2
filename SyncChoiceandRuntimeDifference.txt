@@ -18,3 +18,5 @@ It is faster with semaphores than with normal synchronizations. It is not by mas
 It is the fastest without synchronization, but the results there are inconsistent. So, the speed doesn't help.
 
 For specific numbers, simply look at my my output files.
+
+As for the addition of a third thread, it made things even faster.
