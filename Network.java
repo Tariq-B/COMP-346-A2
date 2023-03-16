@@ -390,7 +390,7 @@ public class Network extends Thread {
         			  setInBufferStatus("normal");
         		  }
 
-                  BufferEmpty.release();
+                  BufferFull.release();
                   mutex1.release();
             
             return true;
@@ -435,7 +435,7 @@ public class Network extends Thread {
         			 setOutBufferStatus("normal"); 
         		 }
 
-                 BufferFull.release();
+                 BufferEmpty.release();
                  mutex2.release();
         	            
              return true;
@@ -483,7 +483,7 @@ public class Network extends Thread {
         			setOutBufferStatus("normal");
         		}
 
-            BufferOut.release();
+            BufferIn.release();
             mutex2.release();
         	            
              return true;
@@ -529,7 +529,7 @@ public class Network extends Thread {
     		    	 setInBufferStatus("normal");
     		     }
 
-            BufferIn.release();
+            BufferOut.release();
             mutex1.release();
             
              return true;
