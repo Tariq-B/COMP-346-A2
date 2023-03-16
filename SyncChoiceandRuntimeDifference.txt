@@ -1,0 +1,18 @@
+Sync choice :
+
+I uses a synchronization block, since just adding synchronization to the methods doesn't fix the inconsistent, 
+which is about entering/fixing specifix indexes.
+
+It's still not properly synchronized if you just add the word synchronized to the methods.
+
+It should be implemented like :
+
+synchronized(account[i]) {} 
+
+To get a lock on the correct element and make sure each index is not modified multiple times leading to inconsistent results
+
+COMPARISON OF RUN TIMES :
+
+It is faster with semaphores than with normal synchronizations. It is not by massive ammounts however, just a little bit faster depending on the run.
+
+It is the fastest without synchronization, but the results there are inconsistent. So, the speed doesn't help.
