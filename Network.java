@@ -18,10 +18,16 @@ public class Network extends Thread {
     private static String inBufferStatus, outBufferStatus;     /* Current status of the network buffers - normal, full, empty */
     private static String networkStatus;                       /* Network status - active, inactive */
 
-    Semaphore mutex1 = new Semaphore(1);
-    Semaphore mutex2 = new Semaphore(1);
-    Semaphore BufferEmpty = new Semaphore(maxNbPackets);
-    Semaphore BufferFull = new Semaphore(0);
+    static Semaphore mutex1 = new Semaphore(1);
+    static Semaphore mutex2 = new Semaphore(1);
+    static Semaphore BufferEmpty = new Semaphore(maxNbPackets);
+    static Semaphore BufferFull = new Semaphore(0);
+
+    static Semaphore BufferOut = new Semaphore(maxNbPackets); //transferOut
+
+    static Semaphore BufferIn = new Semaphore(0); //transferIn
+
+
 
     /** 
      * Constructor of the Network class
