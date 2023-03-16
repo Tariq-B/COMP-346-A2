@@ -20,7 +20,7 @@ public class Driver {
             System.err.println("File was not found");
             System.exit(1);
         }
-                
+
         Network objNetwork = new Network( );             /* Activate the network */
         objNetwork.start();
 
