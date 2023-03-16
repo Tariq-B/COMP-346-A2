@@ -5,7 +5,8 @@ import java.util.concurrent.*;
  * @author Tariq Benmouh
  */
 public class Network extends Thread {
-    
+
+    //releasing the wrong one for V
     private static int maxNbPackets;                           /* Maximum number of simultaneous transactions handled by the network buffer */
     private static int inputIndexClient, inputIndexServer, outputIndexServer, outputIndexClient; /* Network buffer indices for accessing the input buffer (inputIndexClient, outputIndexServer) and output buffer (inputIndexServer, outputIndexClient) */
     private static String clientIP;                            /* IP number of the client application*/
