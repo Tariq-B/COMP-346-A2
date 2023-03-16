@@ -1,0 +1,3 @@
+COMPARISON OF RUN TIMES :
+
+It is faster with semaphores than with normal synchronizations.
