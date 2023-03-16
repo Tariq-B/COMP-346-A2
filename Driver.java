@@ -13,7 +13,7 @@ public class Driver {
 
         //print for later
                 try {
-        PrintStream testoutput = new PrintStream("Phase2Test2.txt");
+        PrintStream testoutput = new PrintStream("Phase2SemaphoresTest2.txt");
         System.setOut(testoutput);
 
         } catch (FileNotFoundException e) {
