@@ -19,13 +19,11 @@ public class Network extends Thread {
     private static String inBufferStatus, outBufferStatus;     /* Current status of the network buffers - normal, full, empty */
     private static String networkStatus;                       /* Network status - active, inactive */
 
-    static Semaphore mutex1 = new Semaphore(1);
-    static Semaphore mutex2 = new Semaphore(1);
+    static Semaphore mutexIn = new Semaphore(1);
+    static Semaphore mutexOut = new Semaphore(1);
     static Semaphore BufferEmpty = new Semaphore(maxNbPackets);
     static Semaphore BufferFull = new Semaphore(0);
-
     static Semaphore BufferOut = new Semaphore(maxNbPackets); //transferOut
-
     static Semaphore BufferIn = new Semaphore(0); //transferIn
 
 
@@ -360,7 +358,7 @@ public class Network extends Thread {
         {
                     try {
                         BufferEmpty.acquire();
-                        mutex1.acquire();
+                        mutexIn.acquire();
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -390,8 +388,8 @@ public class Network extends Thread {
         			  setInBufferStatus("normal");
         		  }
 
+                  mutexIn.release();
                   BufferFull.release();
-                  mutex1.release();
             
             return true;
         }   
@@ -405,7 +403,7 @@ public class Network extends Thread {
         {
             try {
                 BufferFull.acquire();
-                mutex2.acquire();
+                mutexOut.acquire();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -435,8 +433,8 @@ public class Network extends Thread {
         			 setOutBufferStatus("normal"); 
         		 }
 
+                 mutexOut.release();
                  BufferEmpty.release();
-                 mutex2.release();
         	            
              return true;
         }   
@@ -453,7 +451,7 @@ public class Network extends Thread {
         {
             try {
                 BufferOut.acquire();
-                mutex2.acquire();
+                mutexOut.acquire();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -483,8 +481,8 @@ public class Network extends Thread {
         			setOutBufferStatus("normal");
         		}
 
+            mutexOut.release();
             BufferIn.release();
-            mutex2.release();
         	            
              return true;
         }   
@@ -500,7 +498,7 @@ public class Network extends Thread {
 
             try {
                 BufferIn.acquire();
-                mutex1.acquire();
+                mutexIn.acquire();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -529,8 +527,8 @@ public class Network extends Thread {
     		    	 setInBufferStatus("normal");
     		     }
 
+            mutexIn.release();
             BufferOut.release();
-            mutex1.release();
             
              return true;
         }   
