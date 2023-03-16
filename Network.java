@@ -451,7 +451,7 @@ public class Network extends Thread {
          public static boolean transferOut(Transactions outPacket)
         {
             try {
-                BufferFull.acquire();
+                BufferOut.acquire();
                 mutex2.acquire();
 
             } catch (Exception e) {
@@ -482,7 +482,7 @@ public class Network extends Thread {
         			setOutBufferStatus("normal");
         		}
 
-            BufferFull.release();
+            BufferOut.release();
             mutex2.release();
         	            
              return true;
@@ -498,7 +498,7 @@ public class Network extends Thread {
         {
 
             try {
-                BufferEmpty.acquire();
+                BufferIn.acquire();
                 mutex1.acquire();
 
             } catch (Exception e) {
@@ -528,7 +528,7 @@ public class Network extends Thread {
     		    	 setInBufferStatus("normal");
     		     }
 
-            BufferEmpty.release();
+            BufferIn.release();
             mutex1.release();
             
              return true;
