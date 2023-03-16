@@ -12,7 +12,6 @@ public class Driver {
     public static void main(String[] args) {
 
         //print for later
-
                 try {
         PrintStream testoutput = new PrintStream("UnSyncOutput(NODEBUG).txt");
         System.setOut(testoutput);
@@ -21,10 +20,7 @@ public class Driver {
             System.err.println("File was not found");
             System.exit(1);
         }
-
-
-        //change below
-
+                
         Network objNetwork = new Network( );             /* Activate the network */
         objNetwork.start();
 
