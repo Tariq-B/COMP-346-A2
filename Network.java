@@ -1,5 +1,4 @@
 import java.util.concurrent.*;
-import java.util.concurrent.TimeUnit;
 
 /** Network class
  *
@@ -19,12 +18,12 @@ public class Network extends Thread {
     private static Transactions outGoingPacket[];              /* Outgoing network buffer */
     private static String inBufferStatus, outBufferStatus;     /* Current status of the network buffers - normal, full, empty */
     private static String networkStatus;                       /* Network status - active, inactive */
-    static Semaphore mutexIn = new Semaphore(1); //incoming packet
-    static Semaphore mutexOut = new Semaphore(1); //outgoing packet
-    static Semaphore BufferEmpty = new Semaphore(maxNbPackets);
-    static Semaphore BufferFull = new Semaphore(0);
-    static Semaphore BufferTransferOut = new Semaphore(maxNbPackets); //transferOut
-    static Semaphore BufferTransferIn = new Semaphore(0); //transferIn
+    static Semaphore mutexIn; //incoming packet
+    static Semaphore mutexOut; //outgoing packet
+    static Semaphore OutBufferEmpty;
+    static Semaphore OutBufferFull;
+    static Semaphore InBufferEmpty; //transferOut
+    static Semaphore InBufferFull;
 
     /** 
      * Constructor of the Network class
@@ -58,6 +57,13 @@ public class Network extends Thread {
                 
          networkStatus = "active";
 
+         //semaphores
+         mutexIn = new Semaphore(1); //incoming packet
+         mutexOut = new Semaphore(1); //outgoing packet
+         OutBufferEmpty = new Semaphore(maxNbPackets);
+         OutBufferFull = new Semaphore(0);
+         InBufferEmpty = new Semaphore(maxNbPackets); //transferOut
+         InBufferFull = new Semaphore(0); //transferIn
       }     
         
      /** 
@@ -353,14 +359,12 @@ public class Network extends Thread {
      * @param inPacket transaction transferred from the client
      * 
      */
-        public static boolean send(Transactions inPacket)
-        {
-                    try {
-                        BufferEmpty.acquire();
-                        mutexIn.acquire();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        public static boolean send(Transactions inPacket) {
+            try {
+                InBufferEmpty.acquire();
+                mutexIn.acquire();
+            } catch (Exception e) {
+                e.printStackTrace();
                     }
 
         		  inComingPacket[inputIndexClient].setAccountNumber(inPacket.getAccountNumber());
@@ -387,7 +391,7 @@ public class Network extends Thread {
         		  }
 
                   mutexIn.release();
-                  BufferTransferIn.release(); //send end
+                  InBufferFull.release(); //send end
             
             return true;
         }   
@@ -400,7 +404,7 @@ public class Network extends Thread {
          public static boolean receive(Transactions outPacket)
         {
             try {
-                BufferFull.acquire();
+                OutBufferFull.acquire();
                 mutexOut.acquire();
 
             } catch (Exception e) {
@@ -432,7 +436,7 @@ public class Network extends Thread {
         		 }
 
                  mutexOut.release();
-                 BufferTransferOut.release();
+                 OutBufferEmpty.release();
         	            
              return true;
         }   
@@ -448,7 +452,7 @@ public class Network extends Thread {
          public static boolean transferOut(Transactions outPacket)
         {
             try {
-                BufferTransferOut.acquire();
+                OutBufferEmpty.acquire();
                 mutexOut.acquire();
 
             } catch (Exception e) {
@@ -480,7 +484,7 @@ public class Network extends Thread {
         		}
 
             mutexOut.release();
-            BufferFull.release();
+            OutBufferFull.release();
         	            
              return true;
         }   
@@ -495,7 +499,7 @@ public class Network extends Thread {
         {
 
             try {
-                BufferTransferIn.acquire();
+                InBufferFull.acquire();
                 mutexIn.acquire();
 
             } catch (Exception e) {
@@ -526,7 +530,7 @@ public class Network extends Thread {
     		     }
 
             mutexIn.release();
-            BufferEmpty.release();
+            InBufferEmpty.release();
             
              return true;
         }   
