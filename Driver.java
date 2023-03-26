@@ -13,7 +13,7 @@ public class Driver {
 
         //print for later
                 try {
-        PrintStream testoutput = new PrintStream("Phase2SemaphoresTest.txt");
+        PrintStream testoutput = new PrintStream("Phase2SemaphoresTest4.txt");
         System.setOut(testoutput);
 
         } catch (FileNotFoundException e) {
@@ -34,7 +34,8 @@ public class Driver {
         Server objServer2 = new Server("Thread 2");                       /* Activate the 2nd server thread */
         objServer2.start();
 
-
+        //  Server objServer3 = new Server("Thread 3");                       /* Activate the 2nd server thread */
+        //        objServer3.start();
 
         // to not be zombie threads (might not be needed)
         /*try {
