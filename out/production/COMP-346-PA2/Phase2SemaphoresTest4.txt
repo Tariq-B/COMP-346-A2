@@ -301,10 +301,10 @@
 
  Account number 61612 Account Balance 100.0 Message done
 
- Terminating client receiving thread - Running time 439 milliseconds
+ Terminating client receiving thread - Running time 435 milliseconds
 
- Terminating server thread - Thread 1 Running time 428 milliseconds
+ Terminating server thread - Thread 1 Running time 425 milliseconds
 
- Terminating server thread - Thread 2 Running time 428 milliseconds
+ Terminating server thread - Thread 2 Running time 425 milliseconds
 
  Terminating network thread - Client disconnected, Server disconnected
