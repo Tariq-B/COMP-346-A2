@@ -291,7 +291,7 @@
 
  Account number 61612 Account Balance 25.0 Message done
 
- Terminating client sending thread - Running time 344 milliseconds
+ Terminating client sending thread - Running time 334 milliseconds
 
  DEBUG : Server.deposit - i 49 Current balance -250.0 Amount 350.0 Thread 1
 
@@ -301,10 +301,10 @@
 
  Account number 61612 Account Balance 100.0 Message done
 
- Terminating client receiving thread - Running time 445 milliseconds
+ Terminating client receiving thread - Running time 429 milliseconds
 
- Terminating server thread - Thread 2 Running time 433 milliseconds
+ Terminating server thread - Thread 2 Running time 419 milliseconds
 
- Terminating server thread - Thread 1 Running time 433 milliseconds
+ Terminating server thread - Thread 1 Running time 419 milliseconds
 
  Terminating network thread - Client disconnected, Server disconnected

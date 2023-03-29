@@ -13,7 +13,7 @@ public class Driver {
 
         //print for later
                 try {
-        PrintStream testoutput = new PrintStream("3ServerThreadsTest.txt");
+        PrintStream testoutput = new PrintStream("Phase3ServerThreadsTest.txt");
         System.setOut(testoutput);
 
         } catch (FileNotFoundException e) {
