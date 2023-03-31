@@ -15,7 +15,7 @@ COMPARISON OF RUN TIMES :
 
 It is faster with semaphores than with normal synchronizations. It is not by massive ammounts however, just a little bit faster depending on the run.
 
-It is the fastest with semaphores.
+It is the fastest with semaphores and thread server threads.
 
 After that it was without synchronization, but the results there are inconsistent. So, the speed doesn't help.
 
