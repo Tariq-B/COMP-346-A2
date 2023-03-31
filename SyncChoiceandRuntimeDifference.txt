@@ -15,8 +15,10 @@ COMPARISON OF RUN TIMES :
 
 It is faster with semaphores than with normal synchronizations. It is not by massive ammounts however, just a little bit faster depending on the run.
 
-It is the fastest without synchronization, but the results there are inconsistent. So, the speed doesn't help.
+It is the fastest with semaphores.
 
-For specific numbers, simply look at my my output files.
+After that it was without synchronization, but the results there are inconsistent. So, the speed doesn't help.
+
+For specific numbers, simply look at my output files.
 
 As for the addition of a third thread, it made things even faster.
